@@ -30,7 +30,7 @@ class AddressExtension extends DataExtension
      * @author Sebastian Diel <sdiel@pixeltricks.de>
      * @since 30.01.2019
      */
-    public function canCreate(Member $member = null) : bool
+    public function canCreate($member = null) : bool
     {
         $can = true;
         if ($member instanceof Member
