@@ -1,0 +1,6 @@
+de:
+    SilverCart\CustomerSubAccounts\Extensions\MemberExtension:
+        ParentAccount: "Haupt-Account"
+        ParentAccountDesc: "Der Haupt-Account ist das Kundenkonto, dem dieser Kunde untergeordnet ist."
+        SubAccounts: "Unter-Accounts"
+        SubAccountsDesc: "Unter-Accounts sind Kundenkontos, die diesem Kunden untergeordnet sind."

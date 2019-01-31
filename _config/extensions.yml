@@ -1,0 +1,9 @@
+Member:
+    extensions:
+        - SilverCart\CustomerSubAccounts\Extensions\MemberExtension
+SilvercartAddress:
+    extensions:
+        - SilverCart\CustomerSubAccounts\Extensions\AddressExtension
+SilvercartProduct:
+    extensions:
+        - SilverCart\CustomerSubAccounts\Extensions\ProductExtension
