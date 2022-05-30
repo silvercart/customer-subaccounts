@@ -2,8 +2,8 @@
 
 namespace SilverCart\CustomerSubAccounts\Extensions;
 
-use DataExtension;
-use Member;
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\Security\Member;
 
 /**
  * Extension for SilverCart Product.
@@ -15,6 +15,8 @@ use Member;
  * @since 30.01.2019
  * @copyright 2019 pixeltricks GmbH
  * @license see license file in modules root directory
+ * 
+ * @property \SilverCart\Model\Product\Product $owner Owner
  */
 class ProductExtension extends DataExtension
 {

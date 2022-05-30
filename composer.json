@@ -1,0 +1,17 @@
+{
+    "name": "silvercart/customer-subaccounts",
+    "type": "silverstripe-vendormodule",
+    "description": "Customer sub accounts module for the SilverCart ecommerce module for SilverStripe",
+    "homepage": "http://www.silvercart.org",
+    "license": "LGPL-3.0",
+    "keywords": ["silverstripe", "silvercart", "ecommerce", "shop", "webshop", "online shop", "customer", "subaccounts", "sub accounts", "sub account"],
+    "authors": [
+        {
+            "name": "SilverCart",
+            "homepage": "https://www.silvercart.de"
+        }
+    ],
+    "require": {
+        "silvercart/silvercart": "~4.2"
+    }
+}

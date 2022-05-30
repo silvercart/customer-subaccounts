@@ -2,12 +2,13 @@
 
 namespace SilverCart\CustomerSubAccounts\Extensions;
 
-use DataExtension;
-use FieldList;
-use SS_List;
-use Member;
-use SilvercartAddress as Address;
-use SilvercartTools as Tools;
+use Moo\HasOneSelector\Form\Field as HasOneSelector;
+use SilverCart\Dev\Tools;
+use SilverCart\Model\Customer\Address;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\ORM\SS_List;
+use SilverStripe\Security\Member;
 
 /**
  * Extension for SilverStripe Member.
@@ -19,6 +20,8 @@ use SilvercartTools as Tools;
  * @since 30.01.2019
  * @copyright 2019 pixeltricks GmbH
  * @license see license file in modules root directory
+ * 
+ * @property \SilverStripe\Security\Member $owner Owner
  */
 class MemberExtension extends DataExtension
 {
@@ -57,6 +60,13 @@ class MemberExtension extends DataExtension
     {
         $fields->insertBefore('FirstName', $fields->dataFieldByName('ParentAccountID'));
         $fields->dataFieldByName('ParentAccountID')->setDescription($this->owner->fieldLabel('ParentAccountDesc'));
+        if (class_exists(HasOneSelector::class)) {
+            $parentAccountField = HasOneSelector::create('ParentAccount', $this->owner->fieldLabel('ParentAccount'), $this->owner, Member::class)
+                    ->setLeftTitle($this->owner->fieldLabel('ParentAccount'))
+                    ->setDescription($this->owner->fieldLabel('ParentAccountDesc'))
+                    ->removeAddable();
+            $fields->replaceField('ParentAccountID', $parentAccountField);
+        }
     }
     
     /**
@@ -87,7 +97,8 @@ class MemberExtension extends DataExtension
     public function updateSilvercartAddresses(SS_List &$addresses) : void
     {
         if ($this->displayParentAccountData()
-         && !$addresses->exists()) {
+         && !$addresses->exists()
+        ) {
             $addresses = $this->owner->ParentAccount()->SilvercartAddresses();
         }
     }
@@ -105,7 +116,8 @@ class MemberExtension extends DataExtension
     public function updateSilvercartInvoiceAddress(Address &$address) : void
     {
         if ($this->displayParentAccountData()
-         && !$address->exists()) {
+         && !$address->exists()
+        ) {
             $address = $this->owner->ParentAccount()->SilvercartInvoiceAddress();
         }
     }
@@ -123,7 +135,8 @@ class MemberExtension extends DataExtension
     public function updateSilvercartShippingAddress(Address &$address) : void
     {
         if ($this->displayParentAccountData()
-         && !$address->exists()) {
+         && !$address->exists()
+        ) {
             $address = $this->owner->ParentAccount()->SilvercartShippingAddress();
         }
     }
@@ -140,8 +153,8 @@ class MemberExtension extends DataExtension
     {
         return !(Tools::isIsolatedEnvironment()
               || Tools::isBackendEnvironment())
-            && $this->isSubAccount()
-            && $this->owner->config()->display_parent_account_data;
+             && $this->isSubAccount()
+             && $this->owner->config()->display_parent_account_data;
     }
     
     /**

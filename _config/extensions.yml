@@ -1,9 +1,9 @@
-Member:
+SilverStripe\Security\Member:
     extensions:
         - SilverCart\CustomerSubAccounts\Extensions\MemberExtension
-SilvercartAddress:
+SilverCart\Model\Customer\Address:
     extensions:
         - SilverCart\CustomerSubAccounts\Extensions\AddressExtension
-SilvercartProduct:
+SilverCart\Model\Product\Product:
     extensions:
         - SilverCart\CustomerSubAccounts\Extensions\ProductExtension

@@ -2,8 +2,8 @@
 
 namespace SilverCart\CustomerSubAccounts\Extensions;
 
-use DataExtension;
-use Member;
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\Security\Member;
 
 /**
  * Extension for SilverCart Address.
@@ -15,6 +15,8 @@ use Member;
  * @since 30.01.2019
  * @copyright 2019 pixeltricks GmbH
  * @license see license file in modules root directory
+ * 
+ * @property \SilverCart\Model\Customer\Address $owner Owner
  */
 class AddressExtension extends DataExtension
 {
@@ -26,9 +28,6 @@ class AddressExtension extends DataExtension
      * @param Member $member Member to check permission for.
      * 
      * @return bool
-     * 
-     * @author Sebastian Diel <sdiel@pixeltricks.de>
-     * @since 30.01.2019
      */
     public function canCreate($member = null) : bool
     {
